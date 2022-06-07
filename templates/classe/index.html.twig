@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	<section class="ftco-section">
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-md-12">
+					<h4 class="text-center mb-4">LISTE DES CLASSES</h4>
+					<div class="table-wrap">
+						<table class="table table-striped">
+							<thead class="thead-dark">
+								<tr>
+									<th>LIBELLE</th>
+									<th>FILIERE</th>
+									<th>NIVEAU</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+							{% for classe in classes %}
+							
+							<tr>
+								
+								<td> {{ classe.libelle }} </td>
+								<td>{{ classe.filiere }}</td>
+								<td>{{ classe.niveau }}</td>
+
+								<td>
+									<a  class="btn btn-success" href="{{path('classe-edit', {id:classe.id})}}">  Modifier</a>
+									<button type="button" class="btn btn-secondary">Supprimer</button>
+									<button type="button" class="btn btn-dark">Details</button>
+								</td>
+								{% endfor %}
+							</tr>
+							
+							</tbody>
+					    </table>
+						<div>
+						{% do classes.setPageRange(10) %}
+						{{knp_pagination_render(classes,'pagination.html.twig')}}
+						</div>
+                     
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock  %}	
+
+
+    
